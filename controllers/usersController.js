@@ -7,13 +7,17 @@ const getUsers = (req, res) => {
 };
 
 const addNewUser = async (req, res)=>{
-	const user = req.body;
-	const newUser = new UserModel(user);
-	await newUser.save();
-	res.json({
-		message: 'User added to DB',
-		user
-	})
+	try {
+		const user = req.body;
+		const newUser = new UserModel(user);
+		await newUser.save();
+		res.json({
+			message: 'User added to DB',
+			user
+		})
+	} catch(err){
+		res.json(err);
+	}
 };
 
 module.exports = { getUsers, addNewUser };
