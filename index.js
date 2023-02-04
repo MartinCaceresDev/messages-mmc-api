@@ -26,7 +26,8 @@ try {
 
 const io = new SocketServer(server, {
 	cors: {
-		origin: 'https://messages-mmc.onrender.com',
+		// origin: 'https://messages-mmc.onrender.com',
+		origin: '*',
 	},
 });
 
@@ -39,8 +40,13 @@ io.on('connection', (socket) => {
 			socket.join(id);
 		}
 	});
-	socket.on('newMessage', ({ newMessage, room }) => {
-		socket.to(room).emit('newMessage', newMessage);
+	socket.on('leaveRooms', (roomsIds)=>{
+		for(let id of roomsIds){
+			socket.leave(id);
+		}
+	});
+	socket.on('newMessage', (newMessage) => {
+		socket.to(newMessage.room).emit('newMessage', newMessage);
 	});
 	socket.on('messagesAreSeen', ({ room, allMessages, user })=>{
 		socket.to(room).emit('messagesAreSeen', { allMessages, user });

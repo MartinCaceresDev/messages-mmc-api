@@ -1,18 +1,17 @@
 const ChatModel = require("../models/chatModel");
 
 const getChats = (req, res)=>{
-  const { id } = req.params;
-    ChatModel.find({ room: id })
+  const { room } = req.params;
+    ChatModel.find({ room })
       .then(messages=>res.json(messages))
       .catch(err=>res.json(err))
-      
     };
     
-  const getUnreadMessages = (req, res)=>{
-    ChatModel.find({ read: false })
-      .then(unreadMessages => res.json(unreadMessages))
-      .catch(err => res.json(err))
-  };
+const getUnreadMessages = (req, res)=>{
+  ChatModel.find({ read: false })
+    .then(unreadMessages => res.json(unreadMessages))
+    .catch(err => res.json(err))
+};
 
 const postChat = async (req, res)=>{
   const message = req.body;
@@ -29,10 +28,10 @@ const postChat = async (req, res)=>{
 };
 
 const messagesAreSeen = async (req, res)=>{
-  const { id } = req.params;
+  const { room } = req.params;
   const otherUser = req.body;
   try {
-    await ChatModel.updateMany({ room: id, 'from.uid': otherUser.uid }, { $set: { read: true }})
+    await ChatModel.updateMany({ room, 'from.uid': otherUser.uid }, { $set: { read: true }})
     res.json({ message: 'chats marked as seen' })
   } catch(err){
     res.json(err)

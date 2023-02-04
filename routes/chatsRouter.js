@@ -8,7 +8,7 @@ chatsRouter.route('/')
   .get(getUnreadMessages)
   .post(postChat)
 
-chatsRouter.route('/:id')
+chatsRouter.route('/:room')
   .get(getChats)
   .patch(messagesAreSeen);
 
