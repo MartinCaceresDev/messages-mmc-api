@@ -26,8 +26,8 @@ try {
 
 const io = new SocketServer(server, {
 	cors: {
-		// origin: 'https://messages-mmc.onrender.com',
-		origin: '*',
+		origin: 'https://messages-mmc.onrender.com',
+		// origin: '*',
 	},
 });
 
