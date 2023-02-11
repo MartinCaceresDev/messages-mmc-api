@@ -1,4 +1,4 @@
-# Chatty
+# Private Chat
 
 #### Frontend code: https://github.com/MartinCaceresDev/messages-mmc
 
