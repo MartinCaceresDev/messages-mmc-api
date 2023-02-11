@@ -2,4 +2,4 @@
 
 #### Frontend code: https://github.com/MartinCaceresDev/messages-mmc
 
-#### Project Deploy: https://chatty-mmc.onrender.com/
+#### Project Deploy: https://messages-mmc.onrender.com/
