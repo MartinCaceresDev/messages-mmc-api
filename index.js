@@ -8,6 +8,7 @@ const usersRouter = require('./routes/usersRouter');
 const chatsRouter = require('./routes/chatsRouter');
 const { PORT } = require('./port');
 const corsOptions = require('./corsOptions');
+const { urlFront } = require('./utils/urlFront');
 require('dotenv').config()
 
 app.use(cors(corsOptions));
@@ -26,8 +27,7 @@ try {
 
 const io = new SocketServer(server, {
 	cors: {
-		origin: 'https://messages-mmc.onrender.com',
-		// origin: '*',
+		origin: urlFront.production,
 	},
 });
 

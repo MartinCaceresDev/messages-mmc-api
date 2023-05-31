@@ -1,4 +1,8 @@
-const whiteList = ['https://messages-mmc.onrender.com', 'http://127.0.0.1:5173', 'http://localhost:5173']
+const { urlFront } = require("./utils/urlFront");
+
+const whiteList = [
+    urlFront.production
+]
 
 const corsOptions = {
     origin: (origin, callback)=>{
@@ -8,7 +12,8 @@ const corsOptions = {
             callback(new Error('Not allowed by CORS.'))
         }
     },
-    optionsSuccessStatus: 200
+    optionsSuccessStatus: 200,
+    credentials: true
 }
 
 module.exports = corsOptions;
